@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+<ui:composition template="/templates/MSTemplate.xhtml">
+	<style type="text/css">
+</style>
+	<ui:define name="contenido">
+		<ui:define name="tituloPagina">Solicitud</ui:define>
+		<b:container>
+			<b:jumbotron>
+				<h:form id="frmSolVia" styleClass="form-viajes">
+					<b:growl id="growl" globalOnly="true" placementFrom="top"
+						show-detail="true" show-summary="false" allowDismiss="true"
+						delay="10000" escape="true" />
+					<!-- 					<b:image value="images/logo1.jpg" -->
+					<!-- 						style="width: 61px; height: 61px;" tooltipPosition="left" /> -->
+					<br />
+					<h:outputLabel style="font-weight: bold;font-size: 20px;"
+						value="SOLICITUD RESERVACIÓN DE HOTELES" />
+					<br />
+					<h:outputLabel value="Los campos marcados con (*) son obligatorios" />
+					<b:panelGrid columns="2">
+						<h:outputLabel for="fechaSolicitud" value="Fecha de solicitud: *" />
+						<p:calendar id="fechaSolicitud"
+							value="#{controladorSolicitudHot.objSolicitudHotel.fecha_solicitud}" />
+						<h:outputLabel value="Nombre(s) del lo(s) huésped(es):*" />
+						<b:inputTextarea id="nombresHuespeds"
+							value="#{controladorSolicitudHot.objSolicitudHotel.nombres_huespeds}" />
+						<h:outputLabel value="Departamento al que pertenece: *" />
+						<b:selectOneMenu id="departamento" select2="true"
+							value="#{controladorSolicitudHot.objSolicitudHotel.departamento}">
+							<f:selectItem itemLabel="Seleccione..." itemValue="" />
+							<f:selectItems value="#{controladorSolicitudHot.lstEmpresa}"
+								var="emp" itemValue="#{emp.nomina_codigo_sociedad}"
+								itemLabel="#{emp.nomina_descripcion_sociedad}" />
+						</b:selectOneMenu>
+						<h:outputLabel value="Centro de Costos" />
+						<b:selectOneMenu id="centroCosto" select2="true"
+							value="#{controladorSolicitudHot.objSolicitudHotel.centro_costo}"
+							style="width:200px">
+							<f:selectItem itemLabel="Seleccione un centro de costo"
+								itemValue="" />
+							<f:selectItems value="#{controladorSolicitudHot.lstCentroCostos}"
+								var="cenc" itemValue="#{cenc.id_centro_costos}"
+								itemLabel="#{cenc.denominacion}" />
+						</b:selectOneMenu>
+
+						<h:outputLabel value="Nombre del Hotel / ciudad: *" />
+						<b:selectOneMenu id="hotel" select2="true"
+							value="#{controladorSolicitudHot.objSolicitudHotel.hotel}">
+							<f:selectItem itemLabel="Seleccione..." itemValue="" />
+							<f:selectItems value="#{controladorSolicitudHot.lstHoteles}"
+								var="hot" itemValue="#{hot.nombre}"
+								itemLabel="#{hot.nombre} - #{hot.ciudad}" />
+							<f:ajax event="change"
+								listener="#{controladorSolicitudHot.validacionHotelXthml}" />
+						</b:selectOneMenu>
+						<h:outputLabel value="" />
+						<h:panelGrid columns="2">
+							<h:outputLabel value="OTRO: Especifique" />
+							<b:inputText id="otroHotel"
+								disabled="#{controladorSolicitudHot.flagHotel}"
+								value="#{controladorSolicitudHot.objSolicitudHotel.hotel}" />
+						</h:panelGrid>
+						<h:outputLabel value="Habitaciones: *" />
+						<h:panelGrid columns="2">
+							<h:outputLabel value="No.Sencilla(s):" />
+							<p:inputNumber id="habitacionesSencillas" minValue="0"
+								maxValue="50"
+								value="#{controladorSolicitudHot.objSolicitudHotel.habitaciones_sencillas}" style="width:5em;"/>
+							<h:outputLabel value="No.Doble(s):" />
+							<p:inputNumber id="habitacionesDobles" minValue="1" maxValue="50"
+								value="#{controladorSolicitudHot.objSolicitudHotel.habitaciones_dobles}" style="width:5em;"/>
+						</h:panelGrid>
+						<h:outputLabel value="Fecha de ingreso: *" />
+						<p:calendar id="fechaIngreso"
+							value="#{controladorSolicitudHot.objSolicitudHotel.fecha_ingreso}" />
+						<h:outputLabel value="Fecha de salida: *" />
+						<p:calendar id="fechaSalida"
+							value="#{controladorSolicitudHot.objSolicitudHotel.fecha_salida}" />
+						<h:outputLabel value="Motivo del Viaje: *" />
+						<p:inputTextarea id="motivoViaje"
+							value="#{controladorSolicitudHot.objSolicitudHotel.motivo_viaje}" />
+						<h:outputLabel value="Emitir Factura a Nombre de: *" />
+						
+						<b:selectOneMenu id="facturaAnombre" select2="true"
+							value="#{controladorSolicitudHot.objSolicitudHotel.factura_anombre}">
+							<f:selectItem itemLabel="Seleccione..." itemValue="" />
+							<f:selectItems value="#{controladorSolicitudHot.lstEmpresa}"
+								var="emp" itemValue="#{emp.nomina_codigo_sociedad}"
+								itemLabel="#{emp.nomina_descripcion_sociedad}" />
+						</b:selectOneMenu>
+						
+						<h:outputLabel value="Autorizado por: *" />
+						<p:inputText id="autorizadoPor"
+							value="#{controladorSolicitudHot.objSolicitudHotel.autorizado_por}" />
+					</b:panelGrid>
+					<h:panelGrid columns="2"
+						style="padding:10px;margin:10px;text-align:center;">
+						<b:commandButton ajax="true"
+							action="#{controladorSolicitudHot.guardarSolicitud}"
+							update="growl,@this,frmSolVia" process="@this,frmSolVia"
+							look="primary" value="Enviar" style="width:100px;" />
+						<b:commandButton value="Salir." action="/login.jsf" look="danger" />
+					</h:panelGrid>
+					<br />
+					<b:panelGrid columns="1">
+						<h:outputLabel value="NOTA" style="font-weight:bold;" />
+						<h:outputLabel
+							value="Gastos que cubre la empresa: 
+							hospedaje y alimentación" />
+					</b:panelGrid>
+				</h:form>
+			</b:jumbotron>
+		</b:container>
+	</ui:define>
+	<ui:define name="tituloFormulario"></ui:define>
+	<ui:define name="autor">Marathon Autor</ui:define>
+</ui:composition>
+</html>

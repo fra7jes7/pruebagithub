@@ -1,0 +1,311 @@
+.stilo1024
+{
+    width: 1024px;
+    text-align: center;
+}
+.stilo800
+{
+    width: 800px;
+    text-align: center;
+}
+.stilo600
+{
+     width: 600px;
+    text-align: center;
+}
+.stiloEtiqueta
+{
+     width: 100px;
+    text-align: right;
+}
+.stiloContenido1
+{
+     width: 500px;
+    text-align: left;
+}
+.stiloContenido2
+{
+     width: 200px;
+    text-align: left;
+}
+.MenuIE8
+{
+    z-index: 50;
+}
+html
+{
+    margin: 0px 0px 0px 0px;
+}
+/*body
+{
+    margin: 0px 0px 0px 0px;
+    font-family: Arial;
+    font-size: 12px;
+}*/
+#master_cargando
+{
+    width: 500px;
+	background-color: #000;
+	border: solid 1px #000;
+	color: #fff;
+	height:35px;
+	vertical-align: middle;
+	border: solid 1px #3FA9E7;
+	z-index: 1001;
+}
+#contenedor
+{
+    width: 100%;
+}
+#logo
+{
+    width: 100%;
+    height: 100px;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    background-color: Black;
+    -webkit-box-shadow: 0px 0px 20px rgba(20, 20, 20, 1);-moz-box-shadow: 0px 0px 20px rgba(20, 20, 20, 1); box-shadow: 0px 0px 20px rgba(20, 20, 20, 1);
+    
+}
+#logo_in
+{
+	background-color:#010101;
+    background-image: url('../imagenes/cabecera.jpg');
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100px;
+}
+#login
+{
+    width: 100%;
+    height: 30px;
+    position: fixed;
+    top: 130px;
+    left: 0px;
+}
+#login_in
+{
+    width: 100%;
+    height: 30px;
+    padding-top: 10px;
+}
+#login_a
+{
+    width: 50%;
+    float: left;
+    text-align: left;
+    padding-left: 5px;
+    padding-top: 10px;
+}
+#login_b
+{
+    position: fixed;
+    top: 20px;
+    right: 10px;
+    width: 350px;
+    text-align: right;
+    font-size: 12px;
+    color: White;
+}
+#menu
+{
+    width: 100%;top: 100px;
+    left:0px;
+    height: 30px;
+    text-align: left;
+    position: absolute;
+    overflow: visible;
+    background-color: #470810;
+    color: White;
+    padding-top: 10px;
+    z-index: 10;
+    -webkit-box-shadow: 0px 0px 20px rgba(20, 20, 20, 1);-moz-box-shadow: 0px 0px 20px rgba(20, 20, 20, 1); box-shadow: 0px 0px 20px rgba(20, 20, 20, 1);
+}
+#contenido
+{
+    width: 100%;
+    position: fixed;
+    top: 170px;
+    bottom: 30px;
+    overflow: auto;
+    text-align: center;
+    left: 0px;
+}
+#pie
+{
+    font-family: Arial;
+    font-size: 11px;
+    padding: 2px 5px 2px 5px;
+    width: 100%;
+    left: 0px;
+    margin: 0 auto;
+    height: 30px;
+    text-align: left;
+    position: fixed;
+    bottom:0px;
+    color: White;
+    background-color: Black;
+    line-height: 15px;
+    -webkit-box-shadow: 0px 0px 20px rgba(20, 20, 20, 1);-moz-box-shadow: 0px 0px 20px rgba(20, 20, 20, 1); box-shadow: 0px 0px 20px rgba(20, 20, 20, 1);
+    
+}
+.textbox1
+{
+    font-family: Arial;
+    font-size: 12px;
+    font-style: italic;
+    padding: 5px 5px 5px 5px;
+    border: solid 1px gray;
+}
+.textbox1
+{
+    font-family: Arial;
+    font-size: 12px;
+    font-style: italic;
+    padding: 5px 5px 5px 5px;
+    border: solid 1px gray;
+}
+.espaciado_tabla
+{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+.espaciado_tabla_15px
+{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 5px;
+}
+.boton1
+{
+    border: solid 1px #470810;
+    padding: 3px 6px 3px 6px;
+    background-color: #470810;
+    color: White;
+}
+
+.fondoAplicacion
+        {
+            background-color: Gray;
+            filter: alpha(opacity=70);
+            opacity: 0.7;
+        }
+#actualiza
+{
+            background-color: #FFC;
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 14px;
+            padding: 5px;
+            border: 1px #000 solid;
+}
+
+.watermark
+{
+    font-family: Arial;
+    font-size: 12px;
+    font-style: italic;
+    color: gray;
+    border: solid 1px #ccc;
+    padding: 5px 5px 5px 5px;
+    
+}
+
+   .hide 
+      { 
+          display: none; 
+      } 
+      .show 
+      { 
+          display: inherit; 
+      } 
+       .progressBackgroundFilter 
+      { 
+          position: absolute; 
+          top: 0px; 
+          bottom: 0px; 
+          left: 0px; 
+          right: 0px; 
+          overflow: hidden; 
+          padding: 0; 
+          margin: 0; 
+          background-color: #000; 
+          filter: alpha(opacity=50); 
+          opacity: 0.5; 
+          z-index: 1000; 
+      } 
+      .processMessage 
+      { 
+           
+          position: fixed; 
+          font-family:Verdana; 
+          font-size:12px; 
+          font-weight:normal; 
+          color:#000066; 
+          top: 50%; 
+          left: 50%; 
+          padding: 10px; 
+          width: 250px; 
+          height: 100px;
+          z-index: 1001; 
+          background-color: #fff; 
+          margin-left:-125px;
+          margin-top:-50px;
+      } 
+#cargando_prb
+{
+     background-color: #000; 
+     filter: alpha(opacity=50); 
+     opacity: 0.5; 
+     position: fixed; 
+     width: 100%; 
+     height: 100%; 
+     top: 0px;
+     bottom:0px;
+     left: 0px;
+     right:0px;
+     text-align: center; 
+     z-index:1001;
+}
+#opaco
+{
+    filter: alpha(opacity=100); 
+          opacity: 1;
+}
+
+#grupoEconomico
+{
+	float:right;
+	display:inline-block;
+	color:#FFF;
+	padding-right:25px
+}
+
+#btn_desplegar
+{
+	display: inline-block;
+	position: relative;
+	padding: 10px;
+	text-decoration: none !important;
+	cursor: pointer;
+	text-align: center;
+	overflow: visible;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 1.1em;
+	color: #333;
+	text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.75);
+	background-color: #F5F5F5;
+	background-image: -moz-linear-gradient(center top , #FFF, #E6E6E6);
+	background-repeat: repeat-x;
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	-moz-border-top-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	border-image: none;
+	box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.05);
+	border-radius: 4px;
+}

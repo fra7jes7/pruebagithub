@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+<ui:composition template="/templates/MSTemplatePerUsu.xhtml">
+	<style type="text/css">
+</style>
+	<ui:define name="contenido">
+		<ui:define name="tituloPagina">Permisos</ui:define>
+		<b:container>
+			<b:jumbotron>
+
+				<h:form id="frmSolVia" styleClass="form-viajes">
+					<b:growl id="growl" globalOnly="true" placementFrom="top"
+						show-detail="true" show-summary="false" allowDismiss="true"
+						delay="10000" escape="true" />
+					<!-- 					<b:image value="images/logo1.jpg" -->
+					<!-- 						style="width: 61px; height: 61px;" tooltipPosition="left" /> -->
+					<br />
+					<h:outputLabel style="font-weight: bold;font-size: 20px;"
+						value="APROBACIÓN SEGUNDO NIVEL" />
+					<br />
+				</h:form>
+
+				
+			</b:jumbotron>
+		</b:container>
+	</ui:define>
+	<ui:define name="tituloFormulario"></ui:define>
+	<ui:define name="autor">Marathon Autor</ui:define>
+</ui:composition>
+</html>

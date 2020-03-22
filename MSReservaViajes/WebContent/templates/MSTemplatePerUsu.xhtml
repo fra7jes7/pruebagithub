@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+<h:head>
+	<title><ui:insert name="tituloPagina">
+		</ui:insert></title>
+	<style type="text/css">
+			.pf, .pf * {
+				-webkit-box-sizing: content-box;
+				-moz-box-sizing: content-box;
+				box-sizing: content-box;
+			}
+			
+			.nest-bf-in-pf .form-group {
+				margin-bottom: 0px;
+			}
+
+			.form-viajes {
+				margin: 0 auto;
+				max-width: 700px;
+				padding: 15px;
+			}
+</style>
+</h:head>
+
+<h:body style="padding-top: 60px; background-color: #add;">
+	<br />
+	<ui:insert name="tituloFormulario">
+	</ui:insert>
+	<ui:insert name="contenido">
+								Aqui va el contenido
+	</ui:insert>
+</h:body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+<ui:composition template="/templates/MSTemplatePerUsu.xhtml">
+	<style type="text/css">
+</style>
+	<ui:define name="contenido">
+		<ui:define name="tituloPagina">Permisos</ui:define>
+		<b:container>
+			<b:jumbotron>
+
+				<h:form id="frmSolVia" styleClass="form-viajes">
+					<b:growl id="growl" globalOnly="true" placementFrom="top"
+						show-detail="true" show-summary="false" allowDismiss="true"
+						delay="10000" escape="true" />
+					<!-- 					<b:image value="images/logo1.jpg" -->
+					<!-- 						style="width: 61px; height: 61px;" tooltipPosition="left" /> -->
+					<br />
+					<h:outputLabel style="font-weight: bold;font-size: 20px;"
+						value="USUARIOS" />
+					<br />
+					<h:panelGrid columns="1" style="text-align:center;">
+						<b:commandButton ajax="true"
+							action="#{controladorPerUsu.dialogoPermisos}"
+							update="growl,@this,frmSolVia" process="@this,frmSolVia"
+							look="primary btn-block" value="Nuevo" icon="log-in"
+							style="width:100px;" />
+					</h:panelGrid>
+					<br />
+					<b:dataTable value="#{controladorPerUsu.lstUnidadesNegocio}"
+						var="per" id="tblPer" fixedHeader="true" scroll-size="400px"
+						scroll-x="false" responsive="true" lang="es" searching="true">
+						<b:dataTableColumn value="#{per.cd_usuario}" label="Cédula" />
+						<b:dataTableColumn value="#{per.nom_usuario}" label="Nombres" />
+						<b:dataTableColumn value="#{per.empresa}" label="Empresa" />
+						<b:dataTableColumn value="#{per.descripcion}" label="Descripción" />
+						<b:dataTableColumn label="Eliminar">
+							<b:commandButton value="Eliminar" iconAwesome="trash"
+								action="#{controladorPerUsu.eliminarPermisos(per)}">
+								<f:ajax execute="@this" render="@form" />
+							</b:commandButton>
+						</b:dataTableColumn>
+					</b:dataTable>
+				</h:form>
+
+				<p:dialog modal="true" resizable="false" header="Permisos"
+					closable="false" widgetVar="dlgPermisos">
+					<h:form id="frmDgl1">
+						<b:growl id="dglGrowl" globalOnly="true" placementFrom="top"
+							show-detail="true" show-summary="false" allowDismiss="true"
+							delay="10000" escape="true" />
+						<p:panelGrid>
+							<h:outputLabel value="Empresa" />
+							<b:selectOneMenu id="selOneMenEmp" select2="true"
+								value="#{controladorPerUsu.strEmpresa}">
+								<f:selectItem itemLabel="Seleccione..." itemValue="" />
+								<f:selectItems value="#{controladorPerUsu.lstEmpresa}" var="emp"
+									itemValue="#{emp.nomina_codigo_sociedad}"
+									itemLabel="#{emp.nomina_descripcion_sociedad}" />
+							</b:selectOneMenu>
+							<h:outputLabel value="Usuario" />
+							<b:selectOneMenu id="selOneMenCol" select2="true"
+								value="#{controladorPerUsu.objColaborador}" style="width:250px;">
+								<f:selectItem itemLabel="Seleccione..." itemValue="" />
+								<f:selectItems value="#{controladorPerUsu.lstColaboradores}"
+									var="col" itemValue="#{col}" itemLabel="#{col.colaborador}" />
+							</b:selectOneMenu>
+							<h:outputLabel value="Nivel de Acceso" />
+							<b:selectOneMenu id="selOneMenNivelAcceso" select2="true"
+								value="#{controladorPerUsu.objNivelesAcceso}"
+								style="width:250px;">
+								<f:selectItem itemLabel="Seleccione..." itemValue="" />
+								<f:selectItems value="#{controladorPerUsu.lstNivelesAcceso}"
+									var="niv" itemValue="#{niv}" itemLabel="#{niv.descripcion}" />
+							</b:selectOneMenu>
+						</p:panelGrid>
+						<p:panelGrid columns="2">
+							<b:commandButton ajax="true"
+								action="#{controladorPerUsu.guardarPermiso}" update="dglGrowl"
+								look="primary btn-block" value="Aceptar" icon="log-in" size="lg"
+								style="width:90px;"></b:commandButton>
+							<b:commandButton ajax="true" update="dglGrowl"
+								oncomplete="PF('dlgPermisos').hide();"
+								onclick="frmSolViatblPerWidget.DataTable().destroy()"
+								look="danger btn-block" value="Cerrar" icon="log-in" size="lg"
+								style="width:90px;"></b:commandButton>
+						</p:panelGrid>
+					</h:form>
+				</p:dialog>
+
+			</b:jumbotron>
+		</b:container>
+	</ui:define>
+	<ui:define name="tituloFormulario"></ui:define>
+	<ui:define name="autor">Marathon Autor</ui:define>
+</ui:composition>
+</html>

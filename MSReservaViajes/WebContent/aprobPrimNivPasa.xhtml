@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+<ui:composition template="/templates/MSTemplatePerUsu.xhtml">
+	<style type="text/css">
+</style>
+	<ui:define name="contenido">
+		<ui:define name="tituloPagina">APROBACIÓN</ui:define>
+		<b:container>
+			<b:jumbotron>
+
+				<h:form id="frmSolVia" styleClass="form-viajes">
+
+					<b:growl id="growl" globalOnly="true" placementFrom="top"
+						show-detail="true" show-summary="false" allowDismiss="true"
+						delay="10000" escape="true" />
+					<!-- 					<b:image value="images/logo1.jpg" -->
+					<!-- 						style="width: 61px; height: 61px;" tooltipPosition="left" /> -->
+					<br />
+					<p:panelGrid style="border-style:none;">
+						<p:row>
+							<p:column colspan="2">
+								<b:commandButton ajax="true"
+									action="#{controladorAprobPrimNivPas.controlPanelAprob}"
+									update="growl,@this,panelAproacion,panelConsulta"
+									process="@this,frmSolVia" look="primary"
+									value="Aprobación Solicitudes" style="width:180px;" />
+							</p:column>
+							<p:column></p:column>
+							<p:column>
+								<b:commandButton ajax="true"
+									action="#{controladorAprobPrimNivPas.controlPanelConsulta}"
+									update="growl,@this,panelAproacion,panelConsulta"
+									process="@this,frmSolVia" look="primary" value="Consulta"
+									style="width:100px;" />
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+					<p:panel id="panelAproacion"
+						visible="#{controladorAprobPrimNivPas.flaAprobPrimNivPas}">
+						<h:outputLabel style="font-weight: bold;font-size: 20px;"
+							value="APROBACIÓN PRIMER NIVEL SOLICITUD DE PASAJE" />
+						<br />
+						<br />
+						<h:panelGrid columns="3"
+							style="margin-left:5px;padding:5px;margin:5px;">
+							<b:commandButton value="Aprobar" ajax="true"
+								action="#{controladorAprobPrimNivPas.aprobarSolicitudes}"
+								onclick="frmSolViatblSoliWidget.DataTable().destroy()"
+								update="tblSoli,growl" look="primary" />
+							<h:outputText></h:outputText>
+							<b:commandButton value="Salir"
+								action="#{controladorAprobPrimNivPas.salir}" look="danger"
+								style="margin-left:5px;padding:5px;margin:5px;" />
+						</h:panelGrid>
+
+
+						<b:dataTable value="#{controladorAprobPrimNivPas.lstSolicitudPas}"
+							var="soli" id="tblSoli" fixedHeader="true" scroll-size="400px"
+							scroll-x="false" responsive="true" lang="es" searching="true"
+							onselect="ajax:controladorAprobPrimNivPas.onSelect(soli, typeOfSelection, indexes);"
+							ondeselect="ajax:controladorAprobPrimNivPas.onDeselect(soli, typeOfSelection, indexes);"
+							selection-mode="multiple">
+							<b:dataTableColumn value="#{soli.id_sol_pas}" label="Num" />
+							<b:dataTableColumn value="#{soli.fecha_sol}"
+								label="Fecha solicitud">
+							</b:dataTableColumn>
+							<b:dataTableColumn value="#{soli.cedula}" label="Cédula" />
+							<b:dataTableColumn value="#{soli.nombres_pas}"
+								label="Nombres_pasajeros" />
+							<b:dataTableColumn value="#{soli.empresa}" label="Empresa" />
+							<b:dataTableColumn value="#{soli.centro_costos}"
+								label="Centro de costo" />
+							<b:dataTableColumn value="#{soli.maleta}" label="Maleta" />
+							<b:dataTableColumn value="#{soli.ruta_desde}" label="Ruta desde" />
+							<b:dataTableColumn value="#{soli.ruta_hacia}" label="Ruta hacia" />
+							<b:dataTableColumn value="#{soli.fecha_salida}"
+								label="Fecha Salida" />
+							<b:dataTableColumn value="#{soli.hora_salida}"
+								Label="Hora Salida" />
+							<b:dataTableColumn value="#{soli.fecha_regreso}"
+								label="Fecha regreso" />
+							<b:dataTableColumn value="#{soli.hora_regreso}"
+								label="Hora regreso" />
+							<b:dataTableColumn value="#{soli.motivo_viaje}"
+								label="Motivo viaje" />
+							<b:dataTableColumn value="#{soli.factura_anombre}"
+								label="Factura a Nombre" />
+							<b:dataTableColumn value="#{soli.autorizado_por}"
+								label="Autorizado" />
+							<b:dataTableColumn value="#{soli.solicitado_por}"
+								label="Solicitado por" />
+						</b:dataTable>
+					</p:panel>
+
+					<p:panel id="panelConsulta"
+						visible="#{controladorAprobPrimNivPas.flaConsultas}">
+						<h:outputLabel value="Consulta de solicitudes" />
+					</p:panel>
+
+				</h:form>
+
+			</b:jumbotron>
+		</b:container>
+	</ui:define>
+	<ui:define name="tituloFormulario"></ui:define>
+	<ui:define name="autor">Marathon Autor</ui:define>
+</ui:composition>
+</html>

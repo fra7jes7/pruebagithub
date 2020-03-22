@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+<ui:composition template="/templates/MSTemplate.xhtml">
+	<style type="text/css">
+</style>
+	<ui:define name="contenido">
+		<ui:define name="tituloPagina">Solicitud</ui:define>
+		<b:container>
+			<b:jumbotron>
+				<h:form id="frmSolVia" styleClass="form-viajes">
+					<b:growl id="growl" globalOnly="true" showDetail="true"
+						severity="info,warn,error,fatal" />
+					<!-- 					<b:image value="images/logo1.jpg" -->
+					<!-- 						style="width: 61px; height: 61px;" tooltipPosition="left" /> -->
+					<br />
+					<h:outputLabel style="font-weight: bold;font-size: 20px;"
+						value="SOLICITUD DE PASAJE AEREO NACIONAL" />
+					<br />
+					<h:outputLabel value="Los campos marcados con (*) son obligatorios" />
+					<b:panelGrid columns="2">
+					
+						<h:outputLabel for="fechaSol" value="Fecha de solicitud *" />
+						
+						<p:calendar id="fechaSol"
+							value="#{controladorSolPasajes.objSolicitudPas.fecha_sol}" />
+							
+						<h:outputLabel for="nomPasajeros" value="Nombres de pasajeros *" />
+						<b:inputTextarea id="nomPasajeros"
+							value="#{controladorSolPasajes.objSolicitudPas.nombres_pas}" />
+						<h:outputLabel for="cedula" value="Cedula *" />
+						<b:inputText id="cedula"
+							value="#{controladorSolPasajes.objSolicitudPas.cedula}" />
+						<h:outputLabel value="Empresa a la que pertenece *" />
+						
+						<b:selectOneMenu id="empresa"
+							value="#{controladorSolPasajes.objSolicitudPas.empresa}">
+							<f:selectItem itemLabel="Seleccione un departamento" itemValue="" />
+							<f:selectItems value="#{controladorSolPasajes.lstEmpresa}"
+								var="emp" itemValue="#{emp.nomina_codigo_sociedad}"
+								itemLabel="#{emp.nomina_descripcion_sociedad}" />
+						</b:selectOneMenu>
+						
+						<h:outputLabel value="Centro de Costos" />
+						<b:selectOneMenu id="centroCosto" select2="true"
+							value="#{controladorSolPasajes.objSolicitudPas.centro_costos}"
+							style="width:200px">
+							<f:selectItem itemLabel="Seleccione un centro de costo"
+								itemValue="" />
+							<f:selectItems value="#{controladorSolPasajes.lstCentroCostos}"
+								var="cenc" itemValue="#{cenc.id_centro_costos}"
+								itemLabel="#{cenc.denominacion}" />
+						</b:selectOneMenu>
+						<h:outputLabel value="Departamento solicitante" />
+						<b:inputText id="idDepartamentoSolici"
+							value="#{controladorSolPasajes.objSolicitudPas.departamento_solicitante}" />
+						<h:outputLabel value="Incluye Maleta" />
+						<b:panelGrid columns="2">
+							<b:radiobutton id="rdbMaletaSI"
+								value="#{controladorSolPasajes.objSolicitudPas.maleta}"
+								itemLabel="SI" itemValue="SI" />
+							<b:radiobutton id="rdbMaletaNO"
+								value="#{controladorSolPasajes.objSolicitudPas.maleta}"
+								itemLabel="NO" itemValue="NO" />
+						</b:panelGrid>
+						<h:outputLabel value="Ruta Desde *" />
+						
+						<b:selectOneMenu id="rdesde" select2="true"
+							value="#{controladorSolPasajes.objSolicitudPas.ruta_desde}"
+							style="width:200px">
+							<f:selectItem itemLabel="Seleccione una ciudad" itemValue="" />
+							<f:selectItems value="#{controladorSolPasajes.lstCiudades}"
+								var="ciu" itemValue="#{ciu.descrip_cod}"
+								itemLabel="#{ciu.descrip_cod}" />
+						</b:selectOneMenu>
+						
+						<h:outputLabel value="Ruta Hacia *" />
+						<b:inputText id="rhacia"
+							value="#{controladorSolPasajes.objSolicitudPas.ruta_hacia}" />
+						<h:outputLabel value="Fecha Salida" />
+						<p:calendar id="fechaSalida"
+							value="#{controladorSolPasajes.objSolicitudPas.fecha_salida}" />
+						<h:outputLabel value="Hora Salida" />
+						<p:calendar id="horaSalida"
+							value="#{controladorSolPasajes.objSolicitudPas.hora_salida}"
+							pattern="HH:mm" timeOnly="true" />
+						<h:outputLabel value="Fecha Regreso" />
+						<p:calendar id="fechaRegreso"
+							value="#{controladorSolPasajes.objSolicitudPas.fecha_regreso}" />
+						<h:outputLabel value="Hora Regreso" />
+						<p:calendar id="horaRegreso"
+							value="#{controladorSolPasajes.objSolicitudPas.hora_regreso}"
+							pattern="HH:mm" timeOnly="true">
+						</p:calendar>
+						<h:outputLabel value="Motivo del viaje*" />
+						<b:inputTextarea id="motivoVia"
+							value="#{controladorSolPasajes.objSolicitudPas.motivo_viaje}" />
+						<h:outputLabel value="Emitir factura a nombre de: *" />
+						<b:inputText id="emiFac"
+							value="#{controladorSolPasajes.objSolicitudPas.factura_anombre}" />
+						<h:outputLabel value="Autorizado por: *" />
+						<b:inputText id="autPor"
+							value="#{controladorSolPasajes.objSolicitudPas.autorizado_por}" />
+						<h:panelGrid columns="4"
+							style="padding:10px;margin:10px;text-align:center;">
+							<b:commandButton ajax="true"
+								action="#{controladorSolPasajes.guardarSolicitud()}"
+								update="growl,frmSolVia" look="primary btn-block" value="Enviar"
+								icon="log-in" style="width:100px;" />
+							<h:outputLabel value="" />
+							<b:commandButton value="Salir." action="/login.jsf" look="danger" />
+						</h:panelGrid>
+					</b:panelGrid>
+					<b:panelGrid columns="1">
+						<h:outputLabel value="NOTA" style="font-weight:bold;" />
+						<h:outputLabel
+							value="Si su solicitud se recibe 48 horas antes del viaje, el pasaje será entregado en oficinas" />
+						<h:outputLabel
+							value="Si su solicitud se recibe 24 horas antes del viaje, el pasaje deberá retirar en la agencia Cinco Continentes" />
+					</b:panelGrid>
+				</h:form>
+			</b:jumbotron>
+		</b:container>
+	</ui:define>
+	<ui:define name="tituloFormulario"></ui:define>
+	<ui:define name="autor">Marathon Autor</ui:define>
+</ui:composition>
+</html>

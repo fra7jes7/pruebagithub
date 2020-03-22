@@ -1,0 +1,67 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+<ui:composition template="/templates/MSTemplatePerUsu.xhtml">
+	<style type="text/css">
+</style>
+	<ui:define name="contenido">
+		<ui:define name="tituloPagina">APROBACIÓN</ui:define>
+		<b:container>
+			<b:jumbotron>
+
+				<h:form id="frmSolVia" styleClass="form-viajes">
+					<b:growl id="growl" globalOnly="true" placementFrom="top"
+						show-detail="true" show-summary="false" allowDismiss="true"
+						delay="10000" escape="true" />
+					<!-- 					<b:image value="images/logo1.jpg" -->
+					<!-- 						style="width: 61px; height: 61px;" tooltipPosition="left" /> -->
+					<br />
+					<h:outputLabel style="font-weight: bold;font-size: 20px;"
+						value="APROBACIÓN PRIMER NIVEL" />
+					<br />
+					<br />
+					<b:commandButton value="Aprobar" ajax="true"
+						action="#{controladorAprobPrimNivP.aprobarSolicitudes}"
+						onclick="frmSolViatblSoliWidget.DataTable().destroy()"
+						update="tblSoli" look="primary" />
+					<b:dataTable widgetVar="wtablel" value="#{controladorAprobPrimNivP.lstSolicitudHotel}"
+						var="soli" id="tblSoli" fixedHeader="true" scroll-size="400px"
+						scroll-x="false" responsive="true" lang="es" searching="true"
+						onselect="ajax:controladorAprobPrimNivP.onSelect(soli, typeOfSelection, indexes);"
+						ondeselect="ajax:controladorAprobPrimNivP.onDeselect(soli, typeOfSelection, indexes);"
+						selection-mode="multiple" selected-row="true" selection-info="true" select="true">
+						<b:dataTableColumn selection-mode="multiple" />
+						<b:dataTableColumn value="#{soli.id_sol_hot}" label="No" />
+						<b:dataTableColumn value="#{soli.fecha_solicitud}" label="Fecha">
+						</b:dataTableColumn>
+						<b:dataTableColumn value="#{soli.nombres_huespeds}"
+							label="Nombres Huspedes" />
+						<b:dataTableColumn value="#{soli.departamento}" label="Empresa" />
+						<b:dataTableColumn value="#{soli.hotel}" label="Hotel" />
+						<b:dataTableColumn value="#{soli.habitaciones_sencillas}"
+							label="No Hab Senciallas" />
+						<b:dataTableColumn value="#{soli.habitaciones_dobles}"
+							label="No Hab Dobles" />
+						<b:dataTableColumn value="#{soli.fecha_ingreso}" label="Fecha Ing" />
+						<b:dataTableColumn value="#{soli.fecha_salida}"
+							label="Fecha Salida" />
+						<b:dataTableColumn value="#{soli.motivo_viaje}" Label="Motivo" />
+						<b:dataTableColumn value="#{soli.autorizado_por}"
+							label="Autorizado" />
+					</b:dataTable>
+
+				</h:form>
+
+
+			</b:jumbotron>
+		</b:container>
+	</ui:define>
+	<ui:define name="tituloFormulario"></ui:define>
+	<ui:define name="autor">Marathon Autor</ui:define>
+</ui:composition>
+</html>
